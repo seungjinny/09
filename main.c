@@ -2,24 +2,49 @@
 #include <stdlib.h>
 
 /* run this program using the console pauser or add your own getch, system("pause") or input loop */
-#define SIZE 5
+#define ROWS 3
+#define COLS 3
+
+void addMatrix();
+void printMatrix();
 
 int main(int argc, char *argv[]) {
 	
-	int i;
-	int grade[SIZE];
-	int score[SIZE];
+	int A[ROWS][COLS] = {
+	{2, 3, 0},
+	{8, 9, 1},
+	{7, 0, 5} };
 	
-	for(i=0; i<SIZE; i++)
-	{
-		grade[i]= rand() % 100+1;
-	}
+	int B[ROWS][COLS] = {
+	{1, 0, 0},
+	{0, 1, 0},
+	{0, 0, 1} };
 	
-	for(i=0; i<SIZE; i++)
-		score[i] = grade[i];
-		
-	for(i=0; i<SIZE; i++)
-		printf("score [%d] %d (%d)\n", i, score[i], grade[i]);
+	int C[ROWS][COLS];
+	
+	addMatrix(A,B,C);
+	printMatrix(C);
 	
 	return 0;
+}
+
+void addMatrix(int A[][COLS], int B[][COLS], int C[][COLS])
+{
+	int r,c;
+	
+	for(r=0; r<ROWS; r++)
+		for (c=0; c<COLS; c++)
+			C[r][c] = A[r][c] + B[r][c];
+}
+
+void printMatrix (int A[][COLS])
+{
+	int r,c;
+	
+	for(r=0; r<ROWS; r++)
+	{
+		for (c=0; c<COLS; c++)
+			printf("%d ", A[r][c]);
+			printf("\n");
+	}
 }
